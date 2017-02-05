@@ -1263,6 +1263,7 @@ public class GameManager : MonoBehaviour {
         int row = GetRowFromWorldSpace(chosenLoc.y);
         int col = GetColFromWorldSpace(chosenLoc.x);
 
+        actionUI.SetActive(false);
         gridDrawer.SetActive(true);
         healing = true;
 
@@ -1349,7 +1350,7 @@ public class GameManager : MonoBehaviour {
             yield return new WaitForSeconds(2f); //time between each enemy move
         }
 
-        if (players.Count > 0)
+        if (players.Count > 0 && enemies.Count > 0)
         {
             StartCoroutine(PhaseIntro("Player Turn"));
             yield return new WaitForSeconds(2f);
