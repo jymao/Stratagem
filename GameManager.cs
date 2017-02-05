@@ -669,10 +669,10 @@ public class GameManager : MonoBehaviour {
             Vector3 start = unit.transform.position;
             Vector3 end = new Vector3(x, y, 0);
 
-            Vector3 interval = (end - start) * (0.01f);
-            for (int j = 0; j < 25; j++)
+            Vector3 interval = (end - start) * (0.1f);
+            for (int j = 0; j < 10; j++)
             {
-                unit.transform.position = unit.transform.position + 4 * interval;
+                unit.transform.position = unit.transform.position + interval;
                 yield return new WaitForSeconds(0.001f);
             }
 
