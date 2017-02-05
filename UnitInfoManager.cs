@@ -31,7 +31,7 @@ public class UnitInfoManager : MonoBehaviour {
         unitInfo.SetActive(false);
     }
 
-    public void DisplayUnitInfo(GameObject unit, string unitName, bool enemy)
+    public void DisplayUnitInfo(GameObject unit, string unitName)
     {
         Unit unitScript = unit.GetComponent<Unit>();
 
@@ -39,7 +39,7 @@ public class UnitInfoManager : MonoBehaviour {
 
         unitInfo.transform.GetChild(0).gameObject.GetComponent<Text>().text = unitName;
 
-        ChangeUnitImage(unitName, enemy);
+        ChangeUnitImage(unitName);
 
         unitInfo.transform.GetChild(2).gameObject.GetComponent<Text>().text = "HEALTH: " + unitScript.GetCurrHealth() + "/" + unitScript.health;
         unitInfo.transform.GetChild(3).gameObject.GetComponent<Text>().text = "MOVE: " + unitScript.move;
@@ -51,7 +51,7 @@ public class UnitInfoManager : MonoBehaviour {
         unitInfo.transform.GetChild(9).gameObject.GetComponent<Text>().text = "SPEED: " + unitScript.speed;
     }
 
-    private void ChangeUnitImage(string unitName, bool enemy)
+    private void ChangeUnitImage(string unitName)
     {
         GameObject child = unitInfo.transform.GetChild(1).gameObject;
         Image img = child.GetComponent<Image>();

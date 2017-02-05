@@ -10,6 +10,12 @@ public class TitleMenuManager : MonoBehaviour {
     public GameObject title;
     public GameObject startButton;
 
+    public Sprite level1_image;
+    public Sprite level2_image;
+
+    private int level = 1;
+    private int maxLevel = 2;
+
 	// Use this for initialization
 	void Start () {
 		
@@ -44,8 +50,43 @@ public class TitleMenuManager : MonoBehaviour {
         levelSelectUI.SetActive(true);
     }
 
-    public void LoadLevel(int level)
+    public void LoadLevel()
     {
         SceneManager.LoadScene(level);
+    }
+
+    public void NextLevel()
+    {
+        level++;
+        //enable prev button
+        levelSelectUI.transform.GetChild(1).gameObject.SetActive(true);
+
+        if(level == maxLevel)
+        {
+            //disable next button
+            ButtonColorOnExit(levelSelectUI.transform.GetChild(2).gameObject);
+            levelSelectUI.transform.GetChild(2).gameObject.SetActive(false);
+        }
+
+        if(level == 2)
+        {
+            levelSelectUI.transform.GetChild(4).gameObject.GetComponent<SpriteRenderer>().sprite = level2_image;
+        }
+    }
+
+    public void PrevLevel()
+    {
+        level--;
+        //enable next button
+        levelSelectUI.transform.GetChild(2).gameObject.SetActive(true);
+
+        if (level == 1)
+        {
+            //disable prev button
+            ButtonColorOnExit(levelSelectUI.transform.GetChild(1).gameObject);
+            levelSelectUI.transform.GetChild(1).gameObject.SetActive(false);
+            levelSelectUI.transform.GetChild(4).gameObject.GetComponent<SpriteRenderer>().sprite = level1_image;
+        }
+
     }
 }
